@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>Risk to Reward</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="hina-icon.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <script src="jquery-3.6.4.min.js"></script>
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-title">Risk to Reward</div>
+                    <form>
+                      <div class="form-group">
+                          <label for="order-type"><i class="lab la-jedi-order"></i> Position:</label>
+                          <select class="form-control" id="position" name="position" required>
+                              <option value="" selected disabled>Choose</option>
+                              <option value="long">Long</option>
+                              <option value="short">Short</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="lot-size"><i class="las la-tree"></i><i class="las la-tree"></i><i class="las la-tree"></i> Lot Size:</label>
+                        <input type="number" step="0.01" class="form-control" id="lotSize" name="lot-size" value="0.1" required="required">  
+                      </div>             
+                        <div class="form-group">
+                          <label for="order-price"><i class="las la-coins"></i> Order Price:</label>
+                          <input type="number" step="0.01" class="form-control" id="orderPrice" name="order-price" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="stop=loss"><i class="las la-skiing"></i> Stop Loss:</label>
+                            <input type="number" step="0.01" class="form-control dollar-input" id="stopLoss" name="stop-loss" required="required">
+                        </div>                
+                        <div class="form-group">
+                            <label for="take-profit"><i class="las la-hand-holding-usd"></i> Take Profit:</label>
+                            <input type="number" step="0.01" class="form-control dollar-input" id="takeProfit" name="take-profit" required="required">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" onclick="calculate()"><i class="las la-calculator"></i> Calculate</button>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <label for="result-profit"><i class="las la-rocket"></i> If hit T/P:</label>
+                    <input type="text" class="form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
+                    <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:</label>
+                    <input type="text" class="form-control mb-4" id="resultLossString" name="result-loss" value="$" readonly>
+                    <label for="result-ratio"><i class="las la-number"></i> Ratio:</label>
+                    <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio" readonly>
+                  </div>
+            </div>
+        </div>
+    </div>    
+        <script>
+            function calculate() {
+                // inputs
+                var position = document.getElementById("position").value;
+                var lotSize = Number(document.getElementById("lotSize").value);
+                var orderPrice = Number(document.getElementById("orderPrice").value);
+                var stopLoss = Number(document.getElementById("stopLoss").value);
+                var takeProfit= Number(document.getElementById("takeProfit").value);
+                
+                // outputs
+                var resultProfitString = document.getElementById("resultProfitString");
+                var resultLossString = document.getElementById("resultLossString");
+                var resultRatio = document.getElementById("resultRatio");
+
+                /* Formats a number as a string with a dollar sign ($) and two decimal places
+                    with a 0 even if there is no second decimal digit.
+                */
+                function formatLikeMoney(number) {
+                    var formattedNumber = "$" + Number(Math.round(number + "e2") + "e-2").toFixed(2);
+                    return formattedNumber;
+                }
+
+                if (position === "long") {
+                    var takeProfitOrderPriceDiff = takeProfit - orderPrice;
+                    var stopLossOrderPriceDiff = stopLoss - orderPrice;
+                } else if (position === "short") {
+                    var takeProfitOrderPriceDiff = orderPrice - takeProfit;  
+                    var stopLossOrderPriceDiff = orderPrice - stopLoss;  
+                }
+
+                var rawResultProfit = lotSize * takeProfitOrderPriceDiff;
+                var resultProfit = parseFloat(rawResultProfit.toFixed(2));
+
+                
+                var rawResultLoss = lotSize * stopLossOrderPriceDiff;
+                var resultLoss = parseFloat(rawResultLoss.toFixed(2));
+
+                // multiply by -1 so that profit value in ratio is outputted as positive intege
+                var profitRation = (resultProfit / resultLoss) * -1;
+
+                var roundedProfitRation = profitRation.toFixed(2);
+                resultRatio.value = "1 : " + roundedProfitRation;
+
+                resultLossString.value = formatLikeMoney(resultLoss);
+                resultProfitString.value = formatLikeMoney(resultProfit);
+            }
+        </script>
+    </body>
+</html>
