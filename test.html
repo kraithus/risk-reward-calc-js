@@ -18,7 +18,6 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-title">Risk to Reward</div>
-                    <form>
                       <div class="form-group">
                           <label for="order-type"><i class="lab la-jedi-order"></i> Position:</label>
                           <select class="form-control" id="position" name="position" required>
@@ -46,70 +45,24 @@
                         <div class="form-group">
                             <button type="button" class="btn btn-primary" onclick="calculate()"><i class="las la-calculator"></i> Calculate</button>
                         </div>
-                    </form>
                   </div>
             </div>
             <div class="col-sm-6">
                 <div class="card">
                     <label for="result-profit"><i class="las la-rocket"></i> If hit T/P:</label>
                     <input type="text" class="form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
-                    <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:</label>
-                    <input type="text" class="form-control mb-4" id="resultLossString" name="result-loss" value="$" readonly>
-                    <label for="result-ratio"><i class="las la-number"></i> Ratio:</label>
-                    <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio" readonly>
+                    <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:[RISK AMOUNT]</label>
+                    <input type="text" class="form-control mb-4" id="resultLossString" name="result-loss" value="$">
+                    <label for="result-ratio"><i class="las la-number"></i> Ratio:[RISK TO REWARD]</label>
+                    <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio">
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="riskAdvise()"><i class="las la-gavel"></i> ADVISE</button>
+                    </div>
                   </div>
             </div>
         </div>
     </div>    
-        <script>
-            function calculate() {
-                // inputs
-                var position = document.getElementById("position").value;
-                var lotSize = Number(document.getElementById("lotSize").value);
-                var orderPrice = Number(document.getElementById("orderPrice").value);
-                var stopLoss = Number(document.getElementById("stopLoss").value);
-                var takeProfit= Number(document.getElementById("takeProfit").value);
-                
-                // outputs
-                var resultProfitString = document.getElementById("resultProfitString");
-                var resultLossString = document.getElementById("resultLossString");
-                var resultRatio = document.getElementById("resultRatio");
-
-                /* Formats a number as a string with a dollar sign ($) and two decimal places
-                    with a 0 even if there is no second decimal digit.
-                */
-                function formatLikeMoney(number) {
-                    var formattedNumber = "$" + Number(Math.round(number + "e2") + "e-2").toFixed(2);
-                    return formattedNumber;
-                }
-
-                // order of subtraction if whatever.
-                if (position === "long") {
-                    var takeProfitOrderPriceDiff = takeProfit - orderPrice;
-                    var stopLossOrderPriceDiff = stopLoss - orderPrice;
-                } else if (position === "short") {
-                    var takeProfitOrderPriceDiff = orderPrice - takeProfit;  
-                    var stopLossOrderPriceDiff = orderPrice - stopLoss;  
-                }
-
-                // raw vairbale meaning number to adjusted to 2dp
-                var rawResultProfit = lotSize * takeProfitOrderPriceDiff;
-                var resultProfit = parseFloat(rawResultProfit.toFixed(2));
- 
-                var rawResultLoss = lotSize * stopLossOrderPriceDiff;
-                var resultLoss = parseFloat(rawResultLoss.toFixed(2));
-
-                // multiply by -1 so that profit value in ratio is outputted as positive intege
-                var profitRation = (resultProfit / resultLoss) * -1;
-
-                // The value of net profit / net loss. In 1 : x, it is represented as x
-                var roundedProfitRation = profitRation.toFixed(2);
-                resultRatio.value = "1 : " + roundedProfitRation;
-
-                // a string of th net profit and net loss represented in dollars
-                resultLossString.value = formatLikeMoney(resultLoss);
-                resultProfitString.value = formatLikeMoney(resultProfit);
-            }
-        </script>
+        <script src="calculate.js"></script>
+        <script src="riskAdvise.js"></script>
     </body>
 </html>
