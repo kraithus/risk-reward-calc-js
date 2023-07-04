@@ -49,3 +49,12 @@ body {
 .white-icon {
     color: white;
 }
+
+.link-style {
+    color: white;
+    text-decoration: none;
+}
+
+.link-style:hover {
+color: blue;
+}
