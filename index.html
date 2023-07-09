@@ -15,9 +15,6 @@
     <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center bg-secondary py-3 rounded">
-                <a class="m-2 link-style" href="test.html">Go To Beta</a>
-            </div>
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-title">Risk to Reward</div>
@@ -53,13 +50,24 @@
                   </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card mb-4">
                     <label for="result-profit"><i class="las la-rocket"></i> If hit T/P:</label>
                     <input type="text" class="form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
                     <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:</label>
                     <input type="text" class="form-control mb-4" id="resultLossString" name="result-loss" value="$" readonly>
                     <label for="result-ratio"><i class="las la-number"></i> Ratio:</label>
                     <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio" readonly>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                      How much are you willing to risk?
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Test some new features!</h5>
+                      <p class="card-text">With feedback from the only user, I fucked around and now with just Position, Order Price, Risk Amount and a risk:reward ratio, you get advised on where to put the Stop Loss and Take Profit</p>
+                      <a href="test.html" class="btn btn-primary">Go To Beta</a>
+                    </div>
                   </div>
             </div>
         </div>
