@@ -37,20 +37,20 @@
                 <div class="card">
                     <div class="card-title">GBPUSD</div>
                       <div class="form-group">
-                          <label for="order-type"><i class="lab la-jedi-order"></i> Position:</label>
-                          <select class="form-user-input-bg form-control" id="position" name="position" required>
+                          <label class="label-user-input" for="order-type"><i class="lab la-jedi-order"></i> Position:</label>
+                          <select class="form-control" id="position" name="position" required>
                               <option value="" selected disabled>Choose</option>
                               <option value="long">Long</option>
                               <option value="short">Short</option>
                           </select>
                       </div>
                       <div class="form-group">
-                        <label for="lot-size"><i class="las la-tree"></i><i class="las la-tree"></i><i class="las la-tree"></i> Lot Size:</label>
-                        <input type="number" step="0.01" class="form-user-input-bg form-control" id="lotSize" name="lot-size" value="0.01" required="required">  
+                        <label class="label-user-input" for="lot-size"><i class="las la-tree"></i><i class="las la-tree"></i><i class="las la-tree"></i> Lot Size:</label>
+                        <input type="number" step="0.01" class="form-control" id="lotSize" name="lot-size" value="0.01" required="required">  
                       </div>             
                         <div class="form-group">
-                          <label for="order-price"><i class="las la-coins"></i> Order Price:</label>
-                          <input type="number" step="0.01" class="form-user-input-bg form-control" id="orderPrice" name="order-price" required="required">
+                          <label class="label-user-input" for="order-price"><i class="las la-coins"></i> Order Price:</label>
+                          <input type="number" step="0.01" class="form-control" id="orderPrice" name="order-price" required="required">
                         </div>
                         <div class="form-group">
                             <label for="stop=loss"><i class="las la-skiing"></i> Stop Loss:</label>
@@ -68,10 +68,10 @@
             <div class="col-sm-6">
                 <div class="card">
                     <label for="result-profit"><i class="las la-rocket"></i> If hit T/P:</label>
-                    <input type="text" class="form-user-input-bg form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
-                    <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:[RISK AMOUNT]</label>
-                    <input type="text" class="form-user-input-bg form-control mb-4" id="resultLossString" name="result-loss" value="$-">
-                    <label for="result-ratio"><i class="las la-number"></i> Ratio:[RISK TO REWARD]</label>
+                    <input type="text" class="form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
+                    <label class="label-user-input" for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:[RISK AMOUNT]</label>
+                    <input type="text" class="form-control mb-4" id="resultLossString" name="result-loss" value="$-">
+                    <label class="label-user-input" for="result-ratio"><i class="las la-number"></i> Ratio:[RISK TO REWARD]</label>
                     <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio" value="1:3">
                     <div>
                         <button type="button" class="btn btn-primary" onclick="riskAdvise()"><i class="las la-gavel"></i> ADVISE</button>
