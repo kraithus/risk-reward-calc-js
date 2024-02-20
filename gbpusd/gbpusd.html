@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Risk to Reward Beta</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- Open Graph metadata -->
+        <meta property="og:title" content="Trading">
+        <meta property="og:description" content="All Risk Must BE Accounted FOR">
+        <link rel="icon" type="image/png" href="../hina-icon.png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <script src="../jquery-3.6.4.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+    </head>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Risk Management</a>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../test.html">Synthetic</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="gbpusd.html">GBPUSD <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <body>   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-title">GBPUSD</div>
+                      <div class="form-group">
+                          <label for="order-type"><i class="lab la-jedi-order"></i> Position:</label>
+                          <select class="form-user-input-bg form-control" id="position" name="position" required>
+                              <option value="" selected disabled>Choose</option>
+                              <option value="long">Long</option>
+                              <option value="short">Short</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="lot-size"><i class="las la-tree"></i><i class="las la-tree"></i><i class="las la-tree"></i> Lot Size:</label>
+                        <input type="number" step="0.01" class="form-user-input-bg form-control" id="lotSize" name="lot-size" value="0.01" required="required">  
+                      </div>             
+                        <div class="form-group">
+                          <label for="order-price"><i class="las la-coins"></i> Order Price:</label>
+                          <input type="number" step="0.01" class="form-user-input-bg form-control" id="orderPrice" name="order-price" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="stop=loss"><i class="las la-skiing"></i> Stop Loss:</label>
+                            <input type="number" step="0.01" class="form-control dollar-input" id="stopLoss" name="stop-loss" required="required">
+                        </div>                
+                        <div class="form-group">
+                            <label for="take-profit"><i class="las la-hand-holding-usd"></i> Take Profit:</label>
+                            <input type="number" step="0.01" class="form-control dollar-input" id="takeProfit" name="take-profit" required="required">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" onclick="calculate()"><i class="las la-calculator"></i> Calculate</button>
+                        </div>
+                  </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <label for="result-profit"><i class="las la-rocket"></i> If hit T/P:</label>
+                    <input type="text" class="form-user-input-bg form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
+                    <label for="result-loss"><i class="las la-thumbs-down"></i> If hit S/L:[RISK AMOUNT]</label>
+                    <input type="text" class="form-user-input-bg form-control mb-4" id="resultLossString" name="result-loss" value="$-">
+                    <label for="result-ratio"><i class="las la-number"></i> Ratio:[RISK TO REWARD]</label>
+                    <input type="text" class="form-control mb-4" id="resultRatio" name="result-ratio" value="1:3">
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="riskAdvise()"><i class="las la-gavel"></i> ADVISE</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>    
+        <script src="calculate-gbpusd.js"></script>
+        <script src="riskAdvise-gbpusd.js"></script>
+    </body>
+</html>
