@@ -58,3 +58,7 @@ body {
 .link-style:hover {
 color: blue;
 }
+
+.label-user-input {
+color: royalblue;    
+}
