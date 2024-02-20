@@ -38,21 +38,21 @@ function calculate() {
         var stopLossOrderPriceDiff = orderPrice - stopLoss;  
     }
 
-    // raw variable meaning number to adjusted to 2dp
+    // raw variable meaning number to be adjusted to 2dp
     var rawResultProfit = lotSize * takeProfitOrderPriceDiff;
     var resultProfit = parseFloat(rawResultProfit.toFixed(2));
 
     var rawResultLoss = lotSize * stopLossOrderPriceDiff;
     var resultLoss = parseFloat(rawResultLoss.toFixed(2));
 
-    // multiply by -1 so that profit value in ratio is outputted as positive intege
+    // multiply by -1 so that profit value in ratio is outputted as positive integer
     var profitRation = (resultProfit / resultLoss) * -1;
 
     // The value of net profit / net loss. In 1 : x, it is represented as x
     var roundedProfitRation = profitRation.toFixed(2);
     resultRatio.value = "1:" + roundedProfitRation;
 
-    // a string of th net profit and net loss represented in dollars
+    // a string of the net profit and net loss represented in dollars
     resultLossString.value = formatLikeMoney(resultLoss);
     resultProfitString.value = formatLikeMoney(resultProfit);
 }
