@@ -66,3 +66,7 @@ color: royalblue;
 .pd-tp-body {
     padding-top: 65px;
 }
+
+.hidden {
+    display: none;
+}
