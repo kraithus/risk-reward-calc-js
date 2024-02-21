@@ -61,10 +61,26 @@
                         <button type="button" class="btn btn-primary" onclick="riskAdvise()"><i class="las la-gavel"></i> ADVISE</button>
                     </div>
                     <div class="hidden" id="hiddenFields">  
-                    <label for="stop=loss"><i class="las la-skiing"></i> Stop Loss:</label>
-                    <input type="number" step="0.01" class="form-control dollar-input" id="stopLoss" name="stop-loss" required="required"> 
-                    <label for="take-profit"><i class="las la-hand-holding-usd"></i> Take Profit:</label>
-                    <input type="number" step="0.01" class="form-control dollar-input" id="takeProfit" name="take-profit" required="required">              
+                        <div class="form-group">
+                            <label for="stop-loss"><i class="las la-skiing"></i> Stop Loss:</label>
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control dollar-input" id="stopLoss" name="stop-loss" required="required">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="copyStopLoss()">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="take-profit"><i class="las la-hand-holding-usd"></i> Take Profit:</label>
+                            <div class="input-group">
+                                <input type="number" step="0.01" class="form-control dollar-input" id="takeProfit" name="take-profit" required="required">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="copyTakeProfit()">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                                     
                     <label class="take-profit" for="result-loss"><i class="las la-rocket"></i> If hit T/P</label>
                     <input type="text" class="form-control mb-4" id="resultProfitString" name="result-profit" value="$" readonly>
                     <label class="label-user-input" for="result-ratio"><i class="las la-number"></i> Ratio:[RISK TO REWARD]</label>
@@ -75,6 +91,20 @@
                            
         </div>
     </div>    
+        <script>
+        function copyStopLoss() {
+            var stopLossField = document.getElementById('stopLoss');
+            stopLossField.select();
+            document.execCommand('copy');
+        }
+
+        function copyTakeProfit() {
+            var takeProfitField = document.getElementById('takeProfit');
+            takeProfitField.select();
+            document.execCommand('copy');
+        }
+
+        </script>
         <script src="calculate-gbpusd.js"></script>
         <script src="riskAdvise-gbpusd.js"></script>
     </body>
