@@ -7,6 +7,12 @@ function riskAdvise()
         var formattedNumber = "$" + Number(Math.round(number + "e2") + "e-2").toFixed(2);
         return formattedNumber;
     }
+
+    function roundToFiveDp(number) {
+        var formattedNumber = Number(Math.round(number + "e5") + "e-5").toFixed(5);
+        return formattedNumber;
+    }
+
     position = document.getElementById("position").value;
     lotSize = Number(document.getElementById("lotSize").value);
     orderPrice = Number(document.getElementById("orderPrice").value);
@@ -27,8 +33,8 @@ function riskAdvise()
     // actualities. actual shit now uhm, those are false pips, my own measurement btw
     // okay now we give these inputs values to show the user
     if (position === "long") {
-    takeProfit.value = takeProfitPips + orderPrice;
-    stopLoss.value = orderPrice - stopLossPips;
+    takeProfit.value = roundToFiveDp(takeProfitPips + orderPrice);
+    stopLoss.value = roundToFiveDp(orderPrice - stopLossPips);
     // multiply by -1 to ensure positive integer since resultLossStringInput is a negative number
     var potentialProfit = ratioConsequent * resultLossStringInput * -1;
     resultProfitString.value = formatLikeMoney(potentialProfit);
@@ -42,12 +48,24 @@ function riskAdvise()
     console.log("untrimmed loss input: "+ untrimmedLossInput)
 
     } else if (position === "short"){
-        takeProfit.value = orderPrice - takeProfitPips;
-        stopLoss.value = orderPrice + stopLossPips;    
+        takeProfit.value = roundToFiveDp(orderPrice - takeProfitPips);
+        stopLoss.value = roundToFiveDp(orderPrice + stopLossPips);    
         // multiply by -1 to ensure positive integer since resultLossStringInput is a negative number
         var potentialProfit = ratioConsequent * resultLossStringInput * -1;
         resultProfitString.value = formatLikeMoney(potentialProfit);    
     } else {
         console.log("Invalid position");
+    }
+
+    // on click show fields.
+    var hiddenFields = document.getElementById('hiddenFields');
+    var isHidden = hiddenFields.classList.contains('hidden');
+
+    // If fields are currently hidden, show them
+    if (isHidden) {
+        hiddenFields.classList.remove('hidden');
+    } else {
+        // Fields are currently shown, do nothing
+        return; // Exit the function early without further toggling
     }
 }
