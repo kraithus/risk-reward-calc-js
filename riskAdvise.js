@@ -7,6 +7,7 @@ function riskAdvise()
         var formattedNumber = "$" + Number(Math.round(number + "e2") + "e-2").toFixed(2);
         return formattedNumber;
     }
+
     position = document.getElementById("position").value;
     lotSize = Number(document.getElementById("lotSize").value);
     orderPrice = Number(document.getElementById("orderPrice").value);
