@@ -12,7 +12,7 @@ function riskAdvise()
         var formattedNumber = Number(Math.round(number + "e5") + "e-5").toFixed(5);
         return formattedNumber;
     }
-
+    
     position = document.getElementById("position").value;
     lotSize = Number(document.getElementById("lotSize").value);
     orderPrice = Number(document.getElementById("orderPrice").value);
