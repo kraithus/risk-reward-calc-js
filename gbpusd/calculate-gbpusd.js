@@ -39,10 +39,10 @@ function calculate() {
     }
 
     // raw variable meaning number to be adjusted to 2dp
-    var rawResultProfit = lotSize * takeProfitOrderPriceDiff;
+    var rawResultProfit = lotSize * takeProfitOrderPriceDiff * 100000;
     var resultProfit = parseFloat(rawResultProfit.toFixed(2));
 
-    var rawResultLoss = lotSize * stopLossOrderPriceDiff;
+    var rawResultLoss = lotSize * stopLossOrderPriceDiff * 100000;
     var resultLoss = parseFloat(rawResultLoss.toFixed(2));
 
     // multiply by -1 so that profit value in ratio is outputted as positive integer
